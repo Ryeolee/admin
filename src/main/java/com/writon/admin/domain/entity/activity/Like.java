@@ -25,10 +25,12 @@ public class Like {
   @EmbeddedId
   private LikeId id;
 
-  @MapsId("affiliationId")
+  @MapsId("AffiliationId")
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @OnDelete(action = OnDeleteAction.CASCADE)
   @JoinColumn(name = "affiliation_id", nullable = false, referencedColumnName = "affiliation_id")
+  @JoinColumn(name = "organization_id", nullable = false, referencedColumnName = "organization_id")
+  @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "user_id")
   private Affiliation affiliation;
 
   @Column(name = "`check`")

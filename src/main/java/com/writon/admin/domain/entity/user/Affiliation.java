@@ -1,15 +1,17 @@
 package com.writon.admin.domain.entity.user;
 
+import com.writon.admin.domain.entity.activity.Comment;
+import com.writon.admin.domain.entity.activity.Like;
 import com.writon.admin.domain.entity.organization.Organization;
-import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
+import com.writon.admin.domain.entity.small_talk.SmallTalkComment;
+import jakarta.persistence.*;
+
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import lombok.Builder;
 import lombok.Getter;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
@@ -59,5 +61,22 @@ public class Affiliation {
   @ColumnDefault("CURRENT_TIMESTAMP(6)")
   @Column(name = "updated_at", nullable = false)
   private Instant updatedAt;
+
+  @OneToMany(mappedBy = "affiliation", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+  @Builder.Default
+  private List<UserChallenge> userChallenges = new ArrayList<>();
+
+  @OneToMany(mappedBy = "affiliation", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+  @Builder.Default
+  private List<Like> likes = new ArrayList<>();
+
+  @OneToMany(mappedBy = "affiliation", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+  @Builder.Default
+  private List<Comment> comments = new ArrayList<>();
+
+  @OneToMany(mappedBy = "affiliation", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+  @Builder.Default
+  private List<SmallTalkComment> smallTalkComments = new ArrayList<>();
+
 
 }

@@ -1,10 +1,14 @@
 package com.writon.admin.domain.entity.activity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.writon.admin.domain.entity.small_talk.SmallTalkComment;
+import jakarta.persistence.*;
+
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
@@ -23,6 +27,10 @@ public class UserTemplate {
 
   @Column(name = "complete")
   private Boolean complete;
+
+  @OneToMany(mappedBy = "userTemplete", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+  @Builder.Default
+  private List<Comment> comments = new ArrayList<>();
 
   @ColumnDefault("CURRENT_TIMESTAMP(6)")
   @Column(name = "created_at", nullable = false)

@@ -30,10 +30,12 @@ public class Comment {
   @JoinColumn(name = "user_templete_id", nullable = false)
   private UserTemplate userTemplete;
 
-  @MapsId("affiliationId")
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @OnDelete(action = OnDeleteAction.CASCADE)
+  @MapsId("AffiliationId")
   @JoinColumn(name = "affiliation_id", nullable = false, referencedColumnName = "affiliation_id")
+  @JoinColumn(name = "organization_id", nullable = false, referencedColumnName = "organization_id")
+  @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "user_id")
   private Affiliation affiliation;
 
   @Lob
