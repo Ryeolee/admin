@@ -8,16 +8,20 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.Instant;
+import java.time.LocalDateTime;
+
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "Positions")
+@Table(name = "Position")
 public class Position {
 
   @Id
@@ -32,12 +36,14 @@ public class Position {
   @Column(name = "name", nullable = false, length = 45)
   private String name;
 
-  @ColumnDefault("CURRENT_TIMESTAMP")
+  // @ColumnDefault("CURRENT_TIMESTAMP")
+  @CreatedDate
   @Column(name = "created_at")
-  private Instant createdAt;
+  private LocalDateTime createdAt;
 
-  @ColumnDefault("CURRENT_TIMESTAMP")
+  // @ColumnDefault("CURRENT_TIMESTAMP")
+  @LastModifiedDate
   @Column(name = "updated_at")
-  private Instant updatedAt;
+  private LocalDateTime updatedAt;
 
 }

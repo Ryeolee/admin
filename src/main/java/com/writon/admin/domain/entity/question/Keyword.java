@@ -5,14 +5,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.Instant;
+import java.time.LocalDateTime;
+
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "Keywords")
+@Table(name = "Keyword")
 public class Keyword {
 
   @Id
@@ -22,12 +26,14 @@ public class Keyword {
   @Column(name = "keyword", nullable = false, length = 30)
   private String keyword;
 
-  @ColumnDefault("CURRENT_TIMESTAMP")
+  // @ColumnDefault("CURRENT_TIMESTAMP")
+  @CreatedDate
   @Column(name = "created_at")
-  private Instant createdAt;
+  private LocalDateTime createdAt;
 
-  @ColumnDefault("CURRENT_TIMESTAMP")
+  // @ColumnDefault("CURRENT_TIMESTAMP")
+  @LastModifiedDate
   @Column(name = "updated_at")
-  private Instant updatedAt;
+  private LocalDateTime updatedAt;
 
 }

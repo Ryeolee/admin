@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +17,12 @@ import lombok.Getter;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 @Getter
 @Entity
+@Table(name = "Affiliation")
 public class Affiliation {
 
   @EmbeddedId
@@ -54,13 +58,15 @@ public class Affiliation {
   @Column(name = "company_public")
   private Boolean companyPublic;
 
-  @ColumnDefault("CURRENT_TIMESTAMP(6)")
-  @Column(name = "created_at", nullable = false)
-  private Instant createdAt;
+  // @ColumnDefault("CURRENT_TIMESTAMP")
+  @CreatedDate
+  @Column(name = "created_at")
+  private LocalDateTime createdAt;
 
-  @ColumnDefault("CURRENT_TIMESTAMP(6)")
-  @Column(name = "updated_at", nullable = false)
-  private Instant updatedAt;
+  // @ColumnDefault("CURRENT_TIMESTAMP")
+  @LastModifiedDate
+  @Column(name = "updated_at")
+  private LocalDateTime updatedAt;
 
   @OneToMany(mappedBy = "affiliation", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
   @Builder.Default

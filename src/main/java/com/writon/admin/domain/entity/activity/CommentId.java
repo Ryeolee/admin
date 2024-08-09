@@ -17,8 +17,8 @@ public class CommentId implements Serializable {
   @Column(name = "comment_id", nullable = false)
   private Integer commentId;
 
-  @Column(name = "user_templete_id", nullable = false)
-  private Integer userTempleteId;
+  @Column(name = "user_template_id", nullable = false)
+  private Integer userTemplateId;
 
   @Column(name = "affiliation_id", nullable = false)
   private Integer affiliationId;
@@ -34,12 +34,12 @@ public class CommentId implements Serializable {
     CommentId entity = (CommentId) o;
     return Objects.equals(this.commentId, entity.commentId) &&
         Objects.equals(this.affiliationId, entity.affiliationId) &&
-        Objects.equals(this.userTempleteId, entity.userTempleteId);
+        Objects.equals(this.userTemplateId, entity.userTemplateId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(commentId, affiliationId, userTempleteId);
+    return Objects.hash(commentId, affiliationId, userTemplateId);
   }
 
 }

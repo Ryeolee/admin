@@ -4,13 +4,19 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import java.time.Instant;
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 @Getter
 @Setter
 @Entity
+@Table(name = "User")
 public class User {
 
   @Id
@@ -38,12 +44,14 @@ public class User {
   @Column(name = "bank", length = 20)
   private String bank;
 
-  @ColumnDefault("CURRENT_TIMESTAMP(6)")
-  @Column(name = "created_at", nullable = false)
-  private Instant createdAt;
+  // @ColumnDefault("CURRENT_TIMESTAMP")
+  @CreatedDate
+  @Column(name = "created_at")
+  private LocalDateTime createdAt;
 
-  @ColumnDefault("CURRENT_TIMESTAMP(6)")
-  @Column(name = "updated_at", nullable = false)
-  private Instant updatedAt;
+  // @ColumnDefault("CURRENT_TIMESTAMP")
+  @LastModifiedDate
+  @Column(name = "updated_at")
+  private LocalDateTime updatedAt;
 
 }
